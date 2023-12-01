@@ -10,7 +10,7 @@ const dotenv = require('dotenv').config;
 const PORT = 3002;
 
 
-mongoose.connect("mongodb://127.0.0.1:27017/cyangallery", {
+mongoose.connect("mongodb+srv://mokhtarhonarmand:123@cluster0.upcp63a.mongodb.net/", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   }, (err) => {
@@ -44,9 +44,8 @@ app.use('/api', productRoutes)
 
 
 
-
-
-
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 
 
 app.use(Erroehandeler)
