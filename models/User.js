@@ -69,4 +69,4 @@ userSchema.methods.jwtGenrateToken = function(){
 }
 
 
-module.exports = mongoose.model("User" , userSchema)
+module.exports = mongoose.model("users" , userSchema)

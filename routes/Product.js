@@ -24,13 +24,10 @@ const fileFilter = function (req, file, cb) {
   }
 };
 
-// تنظیمات multer
 const upload = multer({
   storage: storage,
   fileFilter: fileFilter,
 });
-
-
 
 
 

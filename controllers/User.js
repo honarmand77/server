@@ -1,8 +1,8 @@
-const User = require('../models/User');
+const users = require('../models/User');
 
 exports.signup  = async (req , res , next) => {
     const {email , username , phonenumber} = req.body;
-    const userExist = await User.findOne({email , username , phonenumber});
+    const userExist = await users.findOne({email , username , phonenumber});
 
     if(userExist){
         return res.status(400).json({
@@ -11,7 +11,7 @@ exports.signup  = async (req , res , next) => {
         })
     }
     try {
-        const user = await User.create(req.body);
+        const user = await users.create(req.body);
         res.status(201).json({
             sucsess:true,
             user
@@ -34,7 +34,7 @@ exports.signin  = async (req , res , next) => {
                 message: "email or password are required"
             })}
 
-             const user = await User.findOne({email});
+             const user = await users.findOne({email});
              if (!user) {
                 return res.status(400).json({
                     sucsess:false ,
