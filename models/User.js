@@ -6,45 +6,46 @@ const userSchema = new mongoose.Schema({
     username:{
         type : String,
         trim: true , 
-        require : [true , 'please add a username'],
+        require : [true , 'لطفا یک نام کاربری اضافه کنید'],
         maxlength: 32
     },
     email:{
         type : String,
         trim: true , 
-        require : [true , 'please add a e-mail'],
-        minlength:[8, 'password must have at least 8 characters'],
+        require : [true , 'لطفا یک ایمیل اضافه کنید'],
         match:[
-            /^[a-zA-Z0-9_.+]+(?<!^[0-9]*)@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/ ,
-            'password must contain at least 1 upercase letter 1 lowercase 1'
+   
+            /^[a-zA-Z0-9_.+]+(?<!^[0-9]*)@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+            'لطفا یک ایمیل معتبر اضافه کنید'
         ],
         
     },
     password:{
         type : String,
         trim: true , 
-        require : [true , 'please add a password'],
+        require : [true , 'لطفا یک رمز عبور اضافه کنید'],
         uniqe: true,
+        minlength:[8, 'رمز عبور باید حداقل 8 کاراکتر داشته باشد'],
         match:[
+
             /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d@$.!%*#?&]/ ,
-            'please add a valid e-mail'
+            'رمز عبور باید حداقل دارای 1 حرف بزرگ 1 کوچک 1 باشد'
         ]
     },
     phonenumber:{
         type : String,
-        require : [true , 'please add a your phone number'],
+        require : [true , 'لطفا یک شماره تلفن خود را اضافه کنید'],
         trim: true , 
         uniqe: true,
         match:[
             /^(0|0098|\+98)9(0[1-5]|[1 3]\d|2[0-2]|98)\d{7}$/ ,
-            'please add a valid number'
+            'لطفا یک شماره معتبر اضافه کنید'
         ]
     },
     
 },{timestamps: true })
 
 
-//انکریپت پاسورد 
 
 userSchema.pre('save' , async function(next){
     if(!this.isModified('password')){
