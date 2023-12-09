@@ -91,7 +91,7 @@ res.status(200).json({
 exports.userinfo = async (req, res) => {
     try {
       const { id } = req.params;
-      const user = await User.findById(id);
+      const user = await users.findById(id);
   
       if (user) {
         res.status(200).json(user);
@@ -107,7 +107,7 @@ exports.userinfo = async (req, res) => {
 exports.admin  = async (req , res , next) => {
 
     try {
-        const user = await User.findById('655c0fcf772ba0f32b7e0583');
+        const user = await users.findById('655c0fcf772ba0f32b7e0583');
         res.status(200).json({
             sucsess:true,
             user
