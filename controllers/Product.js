@@ -41,8 +41,30 @@ exports.createProduct = async (req, res) => {
   
   exports.getProducts = async (req, res) => {
     try {
+
       const products = await Product.find();
-      res.status(200).json(products);
+      if(products){
+        res.status(200).json(products);
+      }else{
+        res.status(404).json({ message: 'محصول یافت نشد' });
+      }
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'خطای سرور' });
+    }
+  };
+
+  
+  exports.ProductView = async (req, res) => {
+    const productId = req.params.id;
+    try {
+      const product = await Product.findById(productId);
+  
+      if (product) {
+        res.status(200).json(product);
+      } else {
+        res.status(404).json({ message: 'محصول یافت نشد' });
+      }
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'خطای سرور' });
