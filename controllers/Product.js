@@ -25,10 +25,10 @@ exports.createProduct = async (req, res) => {
       discountedPrice,
       inventory,
       rating,
-      image: base64Image, // اضافه کردن تصویر به مدل
+      image: base64Image, 
     });
 
-    // ذخیره محصول در دیتابیس
+  
     await newProduct.save();
 
     res.status(201).json({ message: 'محصول با موفقیت ایجاد شد', product: newProduct });

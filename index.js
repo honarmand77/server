@@ -9,7 +9,6 @@ const Erroehandeler = require('./error/Errorhandeler');
 const dotenv = require('dotenv').config;
 const PORT = 3002;
 
-
 mongoose.connect("mongodb+srv://mokhtarhonarmand:123@cluster0.upcp63a.mongodb.net/", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -30,15 +29,12 @@ app.use(cookieParser());
 
 
 
-
 const UserRoutes = require('./routes/User');
 const productRoutes = require('./routes/Product');
 
 
 app.use('/api',UserRoutes)
 app.use('/api', productRoutes)
-
-
 
 
 

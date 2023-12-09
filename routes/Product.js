@@ -1,11 +1,11 @@
-// routes/productRoutes.js
+
 const express = require('express');
 const router = express.Router();
 const {createProduct , getProducts, ProductView } = require('../controllers/Product');
 const multer = require('multer');
 const path = require('path');
 
-// تعیین مسیر ذخیره سازی تصاویر
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, '../server/public/uploads');
@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
   },
 });
 
-// تعیین فیلتر برای نوع فایل‌های قابل قبول
+
 const fileFilter = function (req, file, cb) {
   if (file.mimetype.startsWith('image/')) {
     cb(null, true);

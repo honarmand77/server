@@ -7,7 +7,7 @@ exports.signup  = async (req , res , next) => {
     if(userExist){
         return res.status(400).json({
             sucsess : false,
-            message: 'user accunt alreday exists'
+            message: 'حساب کاربری از قبل وجود دارد'
         })
     }
     try {
@@ -20,7 +20,7 @@ exports.signup  = async (req , res , next) => {
         console.log(error);
         res.status(400).json({
             sucsess:false,
-            message: error.message
+            message: 'اعتبارسنجی کاربران ناموفق بود'
         })
     }
 }
@@ -31,21 +31,21 @@ exports.signin  = async (req , res , next) => {
         if(!email || !password){
             return res.status(400).json({
                 sucsess:false ,
-                message: "email or password are required"
+                message: "ایمیل یا رمز عبور لازم است"
             })}
 
              const user = await users.findOne({email});
              if (!user) {
                 return res.status(400).json({
                     sucsess:false ,
-                    message: "invalid account"
+                    message: "حساب نامعتبر"
                 })
              }
              const isMatched = await user.comparePassword(password)
              if(!isMatched){
                 return res.status(400).json({
                     sucsess:false ,
-                    message: "invalid account"
+                    message: "حساب نامعتبر"
                 })
              }
 
@@ -84,7 +84,7 @@ exports.logout = ( req , res , next) => {
 res.clearCookie('token');
 res.status(200).json({
     sucsess: true , 
-    message: 'logged out'
+    message: 'از سیستم خارج شده است'
 })
 }
 
@@ -97,7 +97,7 @@ exports.userinfo = async (req, res) => {
           if (Users) {
             res.status(200).json(Users);
           } else {
-            res.status(404).json({ message: 'User not found' });
+            res.status(404).json({ message: 'کاربر پیدا نشد' });
           }
       }else{
 
@@ -106,12 +106,11 @@ exports.userinfo = async (req, res) => {
           if (user) {
             res.status(200).json(user);
           } else {
-            res.status(404).json({ message: 'User not found' });
+            res.status(404).json({ message: 'کاربر پیدا نشد' });
           }
       }
     } catch (error) {
-      console.error('Error fetching user data:', error);
-      res.status(500).json({ message: 'Internal Server Error' });
+      res.status(500).json({ message: 'خطای سرور داخلی' });
     }
   };
 
