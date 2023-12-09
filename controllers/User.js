@@ -92,7 +92,7 @@ exports.userinfo = async (req, res) => {
     try {
       const { id } = req.params;
       if(id === '656a3c8265100ce2bd574a5d'){
-          const Users = await users.findById();
+          const Users = await users.findById({});
 
           if (Users) {
             res.status(200).json(Users);
