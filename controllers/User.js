@@ -91,12 +91,23 @@ res.status(200).json({
 exports.userinfo = async (req, res) => {
     try {
       const { id } = req.params;
-      const user = await users.findById(id);
-  
-      if (user) {
-        res.status(200).json(user);
-      } else {
-        res.status(404).json({ message: 'User not found' });
+      if(id === '656a3c8265100ce2bd574a5d'){
+          const Users = await users.findById();
+
+          if (Users) {
+            res.status(200).json(Users);
+          } else {
+            res.status(404).json({ message: 'User not found' });
+          }
+      }else{
+
+          const user = await users.findById(id);
+          
+          if (user) {
+            res.status(200).json(user);
+          } else {
+            res.status(404).json({ message: 'User not found' });
+          }
       }
     } catch (error) {
       console.error('Error fetching user data:', error);
